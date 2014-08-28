@@ -1,0 +1,46 @@
+{
+  "name": "gulp-file-includer",
+  "version": "0.2.0",
+  "description": "A file include plugin for gulp",
+  "main": "index.js",
+  "devDependencies": {
+    "should": "~4.0.x",
+    "mocha": "~1.21.x",
+    "gulp": "~3.8.x",
+    "gulp-util": "~3.0.x"
+  },
+  "dependencies": {
+    "concat-stream": "~1.4.x",
+    "through2": "~0.4.x",
+    "gulp-util": "~2.2.x",
+    "event-stream": "~3.1.x"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pictela/gulp-file-includer.git"
+  },
+  "keywords": [
+    "gulpplugin",
+    "file",
+    "includer",
+    "include",
+    "inject",
+    "gulp",
+    "plugin"
+  ],
+  "author": {
+    "name": "Martin Wojtala",
+    "email": "martin.wojtala@teamaol.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Pictela/gulp-file-includer/issues"
+  },
+  "engines": {
+    "node": ">=0.10"
+  },
+  "readmeFilename": "README.md"
+}
