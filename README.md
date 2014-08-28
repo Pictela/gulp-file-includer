@@ -1,4 +1,4 @@
-### gulp-file-includer [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url]
+# gulp-file-includer [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url]
 
 > A file include plugin for gulp 3
 
@@ -8,11 +8,11 @@ First, install `gulp-file-includer` as a development dependency:
 
 `npm install --save-dev gulp-file-includer`
 
-### Usage
+## Usage
 
 Add it to your `gulpfile.js`:
 
-```js
+```javascript
 var gulp = require('gulp')
 var fileincluder = require('../index')
 
@@ -70,3 +70,8 @@ gulp-file-includer can be called with a config object with these attributes:
 
 ### License
 MIT
+
+[travis-url]: http://travis-ci.org/Pictela/gulp-file-includer
+[travis-image]: https://secure.travis-ci.org/Pictela/gulp-file-includer.png?branch=master
+[npm-url]: https://npmjs.org/package/gulp-file-includer
+[npm-image]: https://badge.fury.io/js/gulp-file-includer.png
