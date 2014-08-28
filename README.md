@@ -1,6 +1,6 @@
 ### gulp-file-includer [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url]
 
-> a plugin of gulp for file includer, based on grunt plugin - grunt-file-include. Added extra global versions
+> A file include plugin for gulp 3
 
 ## Installation
 
