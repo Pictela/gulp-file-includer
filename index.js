@@ -67,6 +67,9 @@ function include(file, text, includeRegExp, prefix, suffix, basePath) {
             new RegExp(escapeRegExp(prefix) + k + escapeRegExp(suffix), 'g'), data[k]);
       }
     }
+
+    includeRegExp.lastIndex = matches.index;
+
     matches = includeRegExp.exec(text);
   }
   file.contents = new Buffer(text);
