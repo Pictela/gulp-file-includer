@@ -57,16 +57,18 @@ function include(file, text, includeRegExp, prefix, suffix, basePath) {
       console.log('file not found! (' + basePath + matches[1] + ')');
     }
 
-    text = text.replace(match, includeContent);
-
     if (matches[3]) {
       // replace variables
       var data = JSON.parse(matches[3]);
       for (var k in data) {
-        text = text.replace(
+        includeContent = includeContent.replace(
             new RegExp(escapeRegExp(prefix) + k + escapeRegExp(suffix), 'g'), data[k]);
       }
     }
+
+    text = text.replace(match, includeContent);
+    includeRegExp.lastIndex -= match.length;
+
     matches = includeRegExp.exec(text);
   }
   file.contents = new Buffer(text);
