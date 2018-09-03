@@ -1,6 +1,6 @@
 {
-  "name": "gulp-file-includer",
-  "version": "1.0.0",
+  "name": "@yodasws/gulp-file-includer",
+  "version": "1.1.0",
   "description": "A file include plugin for gulp",
   "main": "index.js",
   "devDependencies": {
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Pictela/gulp-file-includer.git"
+    "url": "https://github.com/YodasWs/gulp-file-includer.git"
   },
   "keywords": [
     "gulpplugin",
@@ -31,13 +31,19 @@
     "gulp",
     "plugin"
   ],
-  "author": {
-    "name": "Martin Wojtala",
-    "email": "martin.wojtala@teamaol.com"
-  },
+  "author": [
+    {
+      "name": "Martin Wojtala",
+      "email": "martin.wojtala@teamaol.com"
+    },
+    {
+      "name": "Sam Grundman",
+      "email": "npm@yodas.ws"
+    }
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Pictela/gulp-file-includer/issues"
+    "url": "https://github.com/YodasWs/gulp-file-includer/issues"
   },
   "engines": {
     "node": ">=0.10"

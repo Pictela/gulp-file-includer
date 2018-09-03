@@ -1,32 +1,31 @@
 'use strict';
 
-var fs = require('fs'),
-    concat = require('concat-stream'),
-    es = require('event-stream'),
-    through2 = require('through2'),
-    PluginError = require('gulp-util').PluginError;
+const fs = require('fs');
+const concat = require('concat-stream');
+const es = require('event-stream');
+const through2 = require('through2');
+const PluginError = require('gulp-util').PluginError;
 
 module.exports = function(options) {
   options = injectDefaultOptions(options);
 
-  var includeRegExp = new RegExp(escapeRegExp(options.prefix) +
+  const includeRegExp = new RegExp(escapeRegExp(options.prefix) +
       'include\\(\\s*["\'](.*?)["\'](,\\s*({[\\s\\S]*?})){0,1}\\s*\\)' +
       escapeRegExp(options.suffix), 'g');
 
-  function includer(file) {
-    var self = this;
+  const includer => (file) => {
     if (file.isNull()) {
-      self.emit('data', file);
+      this.emit('data', file);
     } else if (file.isStream()) {
-      file.contents.pipe(concat(function(data) {
-        var text = String(data);
-        self.emit('data', include(file, text, includeRegExp, options.prefix, options.suffix, options.basePath));
+      file.contents.pipe(concat((data) => {
+        const text = String(data);
+        this.emit('data', include(file, text, includeRegExp, options.prefix, options.suffix, options.basePath));
       }));
     } else if (file.isBuffer()) {
       try {
-        self.emit('data', include(file, String(file.contents), includeRegExp, options.prefix, options.suffix, options.basePath));
+        this.emit('data', include(file, String(file.contents), includeRegExp, options.prefix, options.suffix, options.basePath));
       } catch (e) {
-        self.emit('error', new PluginError('gulp-file-includer', e));
+        this.emit('error', new PluginError('gulp-file-includer', e));
       }
     }
   }
@@ -47,26 +46,29 @@ function escapeRegExp(text) {
 }
 
 function include(file, text, includeRegExp, prefix, suffix, basePath) {
-  var matches = includeRegExp.exec(text);
+  let matches = includeRegExp.exec(text);
   while (matches) {
-    var match = matches[0],
-        includePath = basePath + matches[1];
+    const match = matches[0];
+    const includePath = basePath + matches[1];
+	let includeContent = '';
     try {
-      var includeContent = fs.readFileSync(includePath);
+      includeContent = fs.readFileSync(includePath);
     } catch (e) {
       console.log('file not found! (' + basePath + matches[1] + ')');
     }
 
-    text = text.replace(match, includeContent);
-
     if (matches[3]) {
       // replace variables
-      var data = JSON.parse(matches[3]);
-      for (var k in data) {
-        text = text.replace(
+      const data = JSON.parse(matches[3]);
+      for (const k in data) {
+        includeContent = includeContent.replace(
             new RegExp(escapeRegExp(prefix) + k + escapeRegExp(suffix), 'g'), data[k]);
       }
     }
+
+    text = text.replace(match, includeContent);
+    includeRegExp.lastIndex -= match.length;
+
     matches = includeRegExp.exec(text);
   }
   file.contents = new Buffer(text);
